@@ -14,3 +14,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.5.0'
 end
 
+group :test do
+  gem 'ffaker', '~> 1.32.1'
+end
