@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'memos#index'
   get 'memos/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
