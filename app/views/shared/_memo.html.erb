@@ -1,0 +1,5 @@
+<% if @memo_items.any? %>
+  <ol class="memos">
+    <%= render partial: 'shared/memo_item', collection: @memo_items %>
+  </ol>
+<% end %>
