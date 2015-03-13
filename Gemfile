@@ -8,6 +8,7 @@ gem 'jquery-rails', '~> 4.0.3'
 gem 'jbuilder', '~> 2.0'
 gem 'turbolinks', '~> 2.5.3'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'ffaker', '~> 1.32.1'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.2.1'
@@ -15,5 +16,4 @@ group :development, :test do
 end
 
 group :test do
-  gem 'ffaker', '~> 1.32.1'
 end
