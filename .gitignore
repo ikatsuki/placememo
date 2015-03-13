@@ -22,3 +22,6 @@ config/secrets.yml
 
 # Database
 config/database.yml
+
+# ctag
+tags
