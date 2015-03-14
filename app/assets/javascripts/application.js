@@ -13,4 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require materialize-sprockets
 //= require_tree .
+
+// TODO:turbolinksによりreadyイベントが発火しない
+$(document).on('ready page:load', function(){
+  $(".button-collapse").sideNav();
+});
+
+// $( document ).ready(function(){
+//   $(".button-collapse").sideNav();
+// }) 

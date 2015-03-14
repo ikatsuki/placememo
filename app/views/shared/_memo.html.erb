@@ -1,5 +1,7 @@
 <% if @memo_items.any? %>
-  <ol class="memos">
-    <%= render partial: 'shared/memo_item', collection: @memo_items %>
-  </ol>
+  <% @memo_items.each_slice(4) do |memos| %>
+  <div class="row">
+    <%= render partial: 'shared/memo_item', collection: memos, as: :memo %>
+  </div>  
+  <% end %>
 <% end %>
