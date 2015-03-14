@@ -14,6 +14,9 @@ gem 'ffaker', '~> 1.32.1'
 group :development, :test do
   gem 'rspec-rails', '~> 3.2.1'
   gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'guard-rspec', '~> 4.5.0'
+  gem 'spring', '~> 1.3.3'
+  gem 'spring-commands-rspec', '~> 1.0.4'
 end
 
 group :test do
