@@ -1,14 +1,3 @@
-<style type="text/css">
-/* html { height: 100% } */
-/* body { height: 100%; margin: 0px; padding: 0px } */
-/* #map { height: 100% } */
-#contents {background-color: pink;}
-#map_for_search {background-color: blue;}
-
-
-
-</style>
-
 <div class="row">
   <div id="contents" class="col s12 m2 l2">
     <ul class="collection with-header">
@@ -18,25 +7,12 @@
     </ul>
   </div>
   <div id="map_for_search" class="col s12 m10 l10">
+    <input id="place_input" type="text" class="map_control" placeholder="Enter a place">
+    <a id="search_btn" class="waves-effect waves-light btn map_control"><i class="mdi-action-search"></i></a>
+    <a id="add_btn" class="waves-effect waves-light btn map_control"><i class="mdi-av-playlist-add"></i></a>
     <div id="map_canvas" style="width:100%;height:500px;"></div>
   </div>
 </div>
 
-
-<script src="//maps.google.com/maps/api/js?sensor=false&amp;libraries=geometry" type="text/javascript"></script>
-
-<script type="text/javascript">
-initialize();
-function initialize() {
-  var latlng = new google.maps.LatLng(35.703709, 139.652849);
-  var myOptions = {
-    zoom: 8,
-    center: latlng,
-    mapTypeControl: false,
-    streetViewControl: false,
-    rotateControl: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  var map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-}
-</script>
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
+<%= javascript_include_tag 'memos' 'data-turbolinks-track' => true %>
