@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.0'
 
 # Default
 gem 'rails', '4.2.0'
@@ -25,4 +26,8 @@ group :development, :test do
 end
 
 group :test do
+end
+
+group :production do
+  gem 'rails_12factor', '~> 0.0.3'
 end
