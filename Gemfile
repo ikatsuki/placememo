@@ -17,6 +17,9 @@ gem 'ffaker', '~> 1.32.1'
 # Design
 gem 'materialize-sass', '~> 0.95.3.3'
 
+# Form 
+gem 'cocoon', '~> 1.2.6'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.2.1'
   gem 'factory_girl_rails', '~> 4.5.0'
