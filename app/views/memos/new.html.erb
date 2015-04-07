@@ -1,15 +1,9 @@
 <div class="row">
-  <div id="contents" class="col s12 m2 l2">
-    <ul class="collection with-header">
-      <li class="collection-header"><h4>Your Memo</h4></li>
-      <li class="collection-item dismissable">Test</li>
-      <li class="collection-item dismissable">Test</li>
-    </ul>
+  <div id="contents" class="col s12 m6 l6">
+    <%= render 'form', path: memos_path, method: :post %>
   </div>
-  <div id="map_for_search" class="col s12 m10 l10">
-    <input id="place_input" type="text" class="map_control" placeholder="Enter a place">
-    <a id="search_btn" class="waves-effect waves-light btn map_control"><i class="mdi-action-search"></i></a>
-    <a id="add_btn" class="waves-effect waves-light btn map_control"><i class="mdi-av-playlist-add"></i></a>
+
+  <div id="map_for_search" class="col s12 m6 l6">
     <div id="map_canvas" style="width:100%;height:500px;"></div>
   </div>
 </div>

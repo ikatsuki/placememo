@@ -16,13 +16,15 @@ def make_memos
 end
 
 def make_places
-  Place.create(title: "Nagoya",
-              address: "Nagoya",
-              latitude: 35.1814464,
-              longitude: 136.906398)
+  memo = Memo.first
 
-  Place.create(title: "Hamamatsu",
-              address: "Hamamatsu",
-              latitude: 34.7108344,
-              longitude: 137.7261258)
+  memo.places.create(title: "Nagoya",
+                     address: "Nagoya",
+                     latitude: 35.1814464,
+                     longitude: 136.906398)
+
+  memo.places.create(title: "Hamamatsu",
+                     address: "Hamamatsu",
+                     latitude: 34.7108344,
+                     longitude: 137.7261258)
 end

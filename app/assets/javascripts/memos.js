@@ -1,8 +1,38 @@
 window.onload = function()
 {
+  // Get present location
   getLocation();
+
+  // After place memo insert
+  $('#memo_detail_places').on('cocoon:after-insert', function(e, insertedItem) {
+    $(insertedItem).collapsible();
+
+    // Set marker on present location
+    var marker = new google.maps.Marker({
+      map: map,
+      anchorPoint: new google.maps.Point(0, -29)
+    });
+
+    // Set autocomplete to address input field 
+    $(insertedItem).find('.address').each(function(i,e){
+      var autocomplete = new google.maps.places.Autocomplete($(this)[0]);
+      autocomplete.bindTo('bounds', map);
+
+      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        redrawGoogleMap(map, marker, autocomplete);
+      });
+    });
+  });
+
+  // Disable enter key in form 
+  $(document).on("keypress", "input:not(.allow_submit)", function(event) {
+    return event.which !== 13;
+  });
+
 };
 
+var map;
+var markers = [];
 
 /**
  * Initialize Google Map
@@ -11,59 +41,43 @@ window.onload = function()
  * @return {}
  */
 function initialize(x, y) {
-    var map = new google.maps.Map(
+
+  map = new google.maps.Map(
       document.getElementById('map_canvas'), 
       setOption(x,y));
 
-    var input = document.getElementById('place_input');
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    // var input = document.getElementById('place_input');
+    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-    var search_btn = document.getElementById('search_btn');
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(search_btn);
+    // var search_btn = document.getElementById('search_btn');
+    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(search_btn);
+    //
+    // var add_btn = document.getElementById('add_btn');
+    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(add_btn);
 
-    var add_btn = document.getElementById('add_btn');
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(add_btn);
-
-    var autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.bindTo('bounds', map);
-
-    var infowindow = new google.maps.InfoWindow();
+    // Set marker on present location
     var marker = new google.maps.Marker({
       map: map,
       anchorPoint: new google.maps.Point(0, -29)
     });
     marker.setPosition(new google.maps.LatLng(x, y));
 
+    // Set autocomplete to address input field 
+    $('.address').each(function(i,e){
+      var autocomplete = new google.maps.places.Autocomplete($(this)[0]);
+      autocomplete.bindTo('bounds', map);
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    infowindow.close();
-    marker.setVisible(false);
-    var place = autocomplete.getPlace();
-    if (!place.geometry) return;
+      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        redrawGoogleMap(map, marker, autocomplete);
+      });
+    });
 
-    // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport) {
-      map.fitBounds(place.geometry.viewport);
-    } else {
-      map.setCenter(place.geometry.location);
-      map.setZoom(17);
-    }
+    // var input = document.getElementById('form_memo_places_attributes_0_address');
+    // var autocomplete = new google.maps.places.Autocomplete(input);
+    // autocomplete.bindTo('bounds', map);
 
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
-    
-    var address = '';
-    if (place.address_components) {
-      address = [
-        (place.address_components[0] && place.address_components[0].short_name || ''),
-        (place.address_components[1] && place.address_components[1].short_name || ''),
-        (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
 
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-    infowindow.open(map, marker);
-  });
+    // Add place changed event 
 }
 
 /**
@@ -84,10 +98,6 @@ function setOption(x, y){
     },
     zoomControl: true,
     zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_BOTTOM
-    },
-    streetViewControl: true,
-    streetViewControlOptions: {
       position: google.maps.ControlPosition.RIGHT_BOTTOM
     }
   };
@@ -133,6 +143,32 @@ function successCallback(pos){
  * @return {} 
  */
 function errorCallback(error){
+
+}
+
+function redrawGoogleMap(map, marker,autocomplete){
+
+  marker.setVisible(false);
+  var place = autocomplete.getPlace();
+  if (!place.geometry) return;
+
+  // If the place has a geometry, then present it on a map.
+  if (place.geometry.viewport) {
+    map.fitBounds(place.geometry.viewport);
+  } else {
+    map.setCenter(place.geometry.location);
+    map.setZoom(17);
+  }
+
+  marker.setPosition(place.geometry.location);
+  marker.setVisible(true);
+
+  var address = '';
+  if (place.address_components) {
+    address = [
+      (place.address_components[0] && place.address_components[0].short_name)
+      ].join(' ');
+  }
 
 }
 

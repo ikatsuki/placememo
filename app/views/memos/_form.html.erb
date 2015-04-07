@@ -1,0 +1,30 @@
+<%= form_for(@memo, url: path, method: method) do |f| %>
+  <div class="row"></div>
+  <div class="row">
+    <div class="input-field col s11">
+      <%= f.text_field :name, class: '' %>
+      <%= f.label :name, 'Memo Name' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= button_tag :type=> "submit", :class => "btn waves-effect waves-light" do %>
+      Save
+    <% end %>
+    <%= link_to_add_association f, :places, 
+      class: 'waves-effect waves-light btn',
+      data: {
+        association_insertion_node: '#memo_detail_places',
+        association_insertion_method: 'append' } do %>
+        Add Place
+    <% end %>
+  </div>
+  <div class="row"></div>
+
+  <div id="memo_detail_places">
+    <%= f.fields_for :places do |p| %>
+      <%= render 'place_fields', f: p %>
+    <% end %>
+  </div>
+
+<% end %>
