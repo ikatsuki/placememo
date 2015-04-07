@@ -1,11 +1,14 @@
 <nav class="blue lighten-2">
   <div class="nav-wrapper">
-    <a href="#!" class="brand-logo center">Placememo</a>
+    <a href="#!" class="brand-logo center">placememo</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="#"><i class="mdi-action-home"></i></a></li>
-      <li><a href="#"><i class="mdi-action-search"></i></a></li>
-      <li><a href="#"><i class="mdi-action-settings"></i></a></li>
+      <%= link_to memos_path, data: { no_turbolink: true } do %>
+        <i class="mdi-action-home"></i>
+      <% end %>
+      <%= link_to new_memo_path, data: { no_turbolink: true } do %>
+        <i class="mdi-content-add-box"></i>
+      <% end %>
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <li><a href="#">Home</a></li>
