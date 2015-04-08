@@ -3,7 +3,8 @@ services:
     - wercker/postgresql
 build:
     steps:
-      - bundle-install
+      - bundle-install:
+          install-toolbelt: true
       - rails-database-yml:
           service: postgresql
       - script:
