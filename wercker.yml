@@ -21,7 +21,7 @@ build:
 deploy:
     steps:
       - heroku-deploy:
-        install-toolbelt: true
+          install-toolbelt: true
       - script:
-        name: Update database
-        code: heroku run rake db:migrate --app $APP_NAME
+          name: Update database
+          code: heroku run rake db:migrate --app $APP_NAME
