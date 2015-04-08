@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require materialize-sprockets
 //= require cocoon
-//= require_tree .
 
 // TODO:turbolinksによりreadyイベントが発火しない
 $(document).on('ready page:load', function(){
