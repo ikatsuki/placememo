@@ -4,7 +4,9 @@
       <%= image_tag 'map.jpg' %>
     </div>
     <div class="card-content grey-text text-darken-2">
-      <a href="#" class="card-title grey-text text-darken-2"><%= memo.name %></a>
+      <%= link_to edit_memo_path(memo.id), class: "card-title grey-text text-darken-2", data: { no_turbolink: true } do %>
+        <%= memo.name%>
+      <% end %>
       <p><%= memo.explanation %></p>
     </div>
   </div>
