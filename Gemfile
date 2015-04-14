@@ -20,6 +20,19 @@ gem 'materialize-sass', '~> 0.95.3.3'
 # Form 
 gem 'cocoon', '~> 1.2.6'
 
+group :development do
+  # Console
+  gem 'pry-rails'
+
+  # Debugger
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+
+  # Show formatted SQL in pry 
+  gem 'hirb'
+  gem 'hirb-unicode'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.2.1'
   gem 'factory_girl_rails', '~> 4.5.0'
