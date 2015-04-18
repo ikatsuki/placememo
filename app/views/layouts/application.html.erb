@@ -8,6 +8,9 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
+<% unless yield(:title).blank?  %>
+  <%= render partial: 'shared/title', locals: {title: yield(:title)} %>
+<% end %>
 <%= yield %>
 <%= render 'layouts/footer' %>
 </body>
