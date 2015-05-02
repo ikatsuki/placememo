@@ -110,7 +110,7 @@ var pm_map = pm_map || {}; // ancestor namespace
   }
 
   /**
-   * getCurrentPosition function succeeded in getting current location 
+   * getCurrentPosition function successed in getting current location 
    * @param {object} pos   
    * @return {} 
    */
@@ -149,9 +149,25 @@ var pm_map = pm_map || {}; // ancestor namespace
       pm_map.map.setZoom(17);
     }
 
-    marker.setPosition(place.geometry.location);
+    var location = place.geometry.location;
+    marker.setPosition(location);
     marker.setVisible(true);
 
+    // Set value to hidden field
+    setLocationToHidden(location);
+  }
+
+  /**
+   * Set location info to hidden fields when autocomplete successed 
+   * @param {object} location   
+   * @return {} 
+   */
+  function setLocationToHidden(location){
+    var current_area = document.activeElement.closest('.collapsible-body');
+    var $lat = $(current_area).find('[id$=latitude]');
+    var $lng = $(current_area).find('[id$=longitude]');
+    $lat.val(location.lat());
+    $lng.val(location.lng());
   }
 
 })(pm_map = pm_map || {});
